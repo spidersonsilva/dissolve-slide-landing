@@ -20,7 +20,7 @@ const ImageSlideshow = () => {
         setCurrentImageIndex(nextImageIndex);
         setNextImageIndex((nextImageIndex + 1) % images.length);
         setIsTransitioning(false);
-      }, 1000); // Half of transition duration
+      }, 1500); // Transition duration
     }, 4000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
@@ -30,9 +30,12 @@ const ImageSlideshow = () => {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Current Image */}
       <div
-        className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
-          isTransitioning ? 'opacity-0' : 'opacity-100'
+        className={`absolute inset-0 transition-all duration-[3000ms] ease-in-out ${
+          isTransitioning ? 'scale-110 opacity-0 blur-sm' : 'scale-100 opacity-100 blur-0'
         }`}
+        style={{
+          transform: isTransitioning ? 'scale(1.1) translateY(-20px)' : 'scale(1) translateY(0)',
+        }}
       >
         <img
           src={images[currentImageIndex]}
@@ -42,11 +45,14 @@ const ImageSlideshow = () => {
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      {/* Next Image (for smooth transition) */}
+      {/* Next Image (for smooth liquid transition) */}
       <div
-        className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
-          isTransitioning ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 transition-all duration-[3000ms] ease-in-out ${
+          isTransitioning ? 'scale-100 opacity-100 blur-0' : 'scale-110 opacity-0 blur-sm'
         }`}
+        style={{
+          transform: isTransitioning ? 'scale(1) translateY(0)' : 'scale(1.1) translateY(20px)',
+        }}
       >
         <img
           src={images[nextImageIndex]}
@@ -57,7 +63,7 @@ const ImageSlideshow = () => {
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-3">
         {images.map((_, index) => (
           <button
             key={index}
@@ -73,7 +79,7 @@ const ImageSlideshow = () => {
                   setCurrentImageIndex(index);
                   setNextImageIndex((index + 1) % images.length);
                   setIsTransitioning(false);
-                }, 1000);
+                }, 1500);
               }
             }}
           />
