@@ -20,8 +20,8 @@ const ImageSlideshow = () => {
         setCurrentImageIndex(nextImageIndex);
         setNextImageIndex((nextImageIndex + 1) % images.length);
         setIsTransitioning(false);
-      }, 1500); // Transition duration
-    }, 4000); // Change image every 4 seconds
+      }, 800); // Faster transition duration
+    }, 2000); // Change image every 2 seconds
 
     return () => clearInterval(interval);
   }, [nextImageIndex, images.length]);
@@ -30,7 +30,7 @@ const ImageSlideshow = () => {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Current Image */}
       <div
-        className={`absolute inset-0 transition-all duration-[3000ms] ease-in-out ${
+        className={`absolute inset-0 transition-all duration-[800ms] ease-in-out ${
           isTransitioning ? 'scale-110 opacity-0 blur-sm' : 'scale-100 opacity-100 blur-0'
         }`}
         style={{
@@ -47,7 +47,7 @@ const ImageSlideshow = () => {
 
       {/* Next Image (for smooth liquid transition) */}
       <div
-        className={`absolute inset-0 transition-all duration-[3000ms] ease-in-out ${
+        className={`absolute inset-0 transition-all duration-[800ms] ease-in-out ${
           isTransitioning ? 'scale-100 opacity-100 blur-0' : 'scale-110 opacity-0 blur-sm'
         }`}
         style={{
@@ -60,30 +60,6 @@ const ImageSlideshow = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/20" />
-      </div>
-
-      {/* Slide indicators */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-3">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentImageIndex
-                ? 'bg-white scale-125'
-                : 'bg-white/50 hover:bg-white/75'
-            }`}
-            onClick={() => {
-              if (!isTransitioning) {
-                setIsTransitioning(true);
-                setTimeout(() => {
-                  setCurrentImageIndex(index);
-                  setNextImageIndex((index + 1) % images.length);
-                  setIsTransitioning(false);
-                }, 1500);
-              }
-            }}
-          />
-        ))}
       </div>
     </div>
   );
