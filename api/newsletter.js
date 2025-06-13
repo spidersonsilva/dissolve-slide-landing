@@ -1,11 +1,10 @@
-import mailerLite from'@mailerlite/mailerlite-nodejs';
+import MailerLite from '@mailerlite/mailerlite-nodejs';
 
-// Initialize MailerLite client
 const mailerLite = new MailerLite({
   api_key: process.env.MAILERLITE_API_KEY
 });
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -17,7 +16,6 @@ export default async (req, res) => {
       return res.status(400).json({ error: 'Email is required' });
     }
 
-    // Add subscriber to MailerLite
     const response = await mailerLite.subscribers.createOrUpdate({
       email,
       status: 'active',
@@ -28,4 +26,4 @@ export default async (req, res) => {
     console.error('Newsletter signup error:', error);
     return res.status(500).json({ error: 'Failed to subscribe' });
   }
-}; 
+}
