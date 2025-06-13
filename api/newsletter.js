@@ -1,11 +1,11 @@
-const MailerLite = require('@mailerlite/mailerlite-nodejs');
+import mailerLite from'@mailerlite/mailerlite-nodejs';
 
 // Initialize MailerLite client
 const mailerLite = new MailerLite({
   api_key: process.env.MAILERLITE_API_KEY
 });
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
