@@ -20,7 +20,7 @@ const HeroContent = () => {
     }
 
     setIsLoading(true);
-    
+
     try {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
@@ -55,8 +55,8 @@ const HeroContent = () => {
   return (
     <>
       {/* Bible verse at the top */}
-      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-center px-4">
-        <h1 className="text-white text-2xl md:text-4xl font-bold mb-2 drop-shadow-lg">
+      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-center px-4 w-full max-w-sm sm:max-w-md">
+        <h1 className="font-syne-mono text-white text-2xl md:text-4xl font-bold mb-2 drop-shadow-lg leading-snug">
           In the beginning God created the heavens and the earth.
         </h1>
         <p className="text-white/80 text-sm md:text-base drop-shadow-md">
@@ -88,7 +88,7 @@ const HeroContent = () => {
                 <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
               ) : (
                 <>
-                  Subscribe
+                  Join Us
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
