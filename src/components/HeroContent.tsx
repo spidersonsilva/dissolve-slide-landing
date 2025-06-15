@@ -55,7 +55,8 @@ const HeroContent = () => {
   return (
     <>
       {/* Bible verse at the top */}
-      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-center px-4 w-full max-w-sm sm:max-w-md">
+      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-center px-4 w-full max-w-sm sm:max-w-[36rem] lg:max-w-[42rem]">
+
         <h1 className="font-syne-mono text-white text-2xl md:text-4xl font-bold mb-2 drop-shadow-lg leading-snug">
           In the beginning God created the heavens and the earth.
         </h1>
