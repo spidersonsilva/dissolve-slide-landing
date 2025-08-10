@@ -4,6 +4,12 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://www.ophanim.eu",
+      "permanent": true
+    }
   ]
 }
-  
